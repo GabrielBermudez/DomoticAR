@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "domoticAR",
+    "slug": "domoticAR",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "domotic_ar.com"
+    }
+  }
+}
