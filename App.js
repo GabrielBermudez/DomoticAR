@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import {NavigationContainer} from '@react-navigation/native';
-import { MenuSideBar } from "./src/Navigator/MenuSideBar";
+import { NavigationContainer } from '@react-navigation/native';
+import Navigator from './src/Navigator/Navigator';
 
 
 export default function App() {
@@ -11,14 +11,12 @@ export default function App() {
     GrapeNuts: require('./assets/fonts/GrapeNuts-Regular.ttf'),
   });
 
-  if(!loaded) return <AppLoading />
+  if (!loaded) return <AppLoading />
 
   return (
-    
-      <NavigationContainer>
-        <MenuSideBar environments="Admin"/>
-      </NavigationContainer>
-    
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
   );
 }
 
