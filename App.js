@@ -4,7 +4,8 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigator from './src/Navigator/Navigator';
-
+import { Provider } from 'react-redux';
+import RootReducer from './src/store';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,9 +15,11 @@ export default function App() {
   if (!loaded) return <AppLoading />
 
   return (
-    <NavigationContainer>
-      <Navigator />
-    </NavigationContainer>
+    <Provider store={RootReducer}>
+      <NavigationContainer>
+        <Navigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
