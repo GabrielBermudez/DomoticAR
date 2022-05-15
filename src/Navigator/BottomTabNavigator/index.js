@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AdminScreens } from '../../Screens/AdminScreens';
+import AdminScreenNavigator from "../StackNavigator/AdminScreenNavigator";
 import { Home } from '../../Screens/Home';
-import { Entypo, MaterialIcons } from '@expo/vector-icons'; 
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 //<MaterialIcons name="add-to-home-screen" size={24} color="black" />
@@ -15,7 +15,8 @@ const BottomTabNavigator = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBar,
-      }}>
+      }}
+      >
         <Tab.Screen name="Inicio" component={Home} options={{
           tabBarIcon: ({focused}) => (
             <View style={styles.item}>
@@ -23,7 +24,7 @@ const BottomTabNavigator = () => {
               <Text>Inicio</Text>
             </View>
           )}}/>
-        <Tab.Screen name="Administrador de Pantallas" component={AdminScreens} options={{
+        <Tab.Screen name="Administrador de Pantallas" component={AdminScreenNavigator} options={{
           tabBarIcon: ({focused}) => (
             <View style={styles.item}>
               <MaterialIcons name="add-to-home-screen" size={24} color="black" />

@@ -1,19 +1,19 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements'
-
 import { useSelector } from 'react-redux';
 
 export const AdminScreens = () => {
-	const rooms = useSelector(state => state.rooms);
+	const rooms = useSelector(state => state.rooms.rooms);
+	const images = useSelector(state => state.images.images);
 
-	const cardRooms = rooms.map((room) => {
+	const cardRooms = images.map((image, key) => {
 		return (
-			<View key={`room-${room.id}`} style={styles.cardRoom}>
+			<View key={`room-${key}`} style={styles.cardRoom}>
 				<Card>
-					<Card.Title style={styles.cardTitle}>{room.title}</Card.Title>
+					<Card.Title style={styles.cardTitle}>{image.title}</Card.Title>
 					<Card.Divider/>
-					<Card.Image source={require('../../assets/images/background.jpg')}>
+					<Card.Image source={{uri: image.image}}>
 						<Button
 						icon={<Icon name='code' color='#ffffff' />}
 						buttonStyle={{borderRadius: 50, marginTop: '30%', width: '30%', alignSelf:'center'}}
@@ -25,16 +25,15 @@ export const AdminScreens = () => {
 	})
 
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Habitaciones</Text>
+		<ScrollView style={styles.container}>
 			{cardRooms}
-		</View>
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container:{
-		flex: 1,	
+		flex: 1,
 	},
 	title:{
 		fontSize: 30,
