@@ -12,7 +12,6 @@ export const AdminScreens = ({navigation}) => {
 		const unsubscribe = navigation.addListener('focus', async () => {
 			const data = await findAllRooms();
 			setRooms(data.rows._array);
-			console.log({rooms});
 		})
 		return unsubscribe;
 	},[])

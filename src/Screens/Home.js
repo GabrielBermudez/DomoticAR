@@ -14,7 +14,6 @@ export const Home = () => {
 		);
 	})
 
-	console.log(rooms);
 	return (
 		<View style={{flex: 1}}>
 			<ImageBackground source={require('../../assets/images/background.jpg')} style={styles.image}>

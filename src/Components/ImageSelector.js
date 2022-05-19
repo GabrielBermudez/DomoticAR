@@ -12,15 +12,19 @@ const ImageSelector = ({navigation}) => {
     const [geoLocation, setGeoLocation] = useState({lat: 0, lng: 0});
 
     useEffect(async () => {
+        handleGetLocation();
+
+    },[])
+
+    const handleGetLocation = async () => {
         const location = await Location.getCurrentPositionAsync({
             timeout: 5000,
         });
-
         setGeoLocation({
             lat: location.coords.latitude,
             lng: location.coords.longitude
         })
-    },[])
+    }
 
     const verifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -50,6 +54,7 @@ const ImageSelector = ({navigation}) => {
 
     const onHandlerChangeTitle = (value) => setTitle(value);
     const onHandlerSave = async () => {
+        console.log(geoLocation);
         dispatch(addImage(title, pathImage, geoLocation));
         navigation.navigate('Home');
     }
