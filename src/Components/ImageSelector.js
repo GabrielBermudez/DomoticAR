@@ -1,13 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TextInput, View, StyleSheet, Button, Image, Alert} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import {useDispatch} from "react-redux";
 import {addImage} from "../store/reducers/ImagesAction";
+import * as Location from "expo-location";
 
 const ImageSelector = ({navigation}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [pathImage, setPathImage] = useState('');
+    const [geoLocation, setGeoLocation] = useState({lat: 0, lng: 0});
+
+    useEffect(async () => {
+        const location = await Location.getCurrentPositionAsync({
+            timeout: 5000,
+        });
+
+        setGeoLocation({
+            lat: location.coords.latitude,
+            lng: location.coords.longitude
+        })
+    },[])
 
     const verifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -36,8 +49,8 @@ const ImageSelector = ({navigation}) => {
     }
 
     const onHandlerChangeTitle = (value) => setTitle(value);
-    const onHandlerSave = () => {
-        dispatch(addImage(title, pathImage));
+    const onHandlerSave = async () => {
+        dispatch(addImage(title, pathImage, geoLocation));
         navigation.navigate('Home');
     }
     return (

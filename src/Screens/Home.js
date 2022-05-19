@@ -16,7 +16,7 @@ export const Home = () => {
 
 	console.log(rooms);
 	return (
-		<View style={{flex: 1,}}>
+		<View style={{flex: 1}}>
 			<ImageBackground source={require('../../assets/images/background.jpg')} style={styles.image}>
 				<Text style={styles.textTitle}>Administrador de Hogar</Text>
 				<View style={styles.container}>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 	image: {
     	flex: 1,
 	    resizeMode: 'contain',
+		alignItems: 'center'
 
   	},
 	textTitle:{
