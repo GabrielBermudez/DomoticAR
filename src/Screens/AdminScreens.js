@@ -35,6 +35,7 @@ export const AdminScreens = ({navigation}) => {
 										width: '30%',
 										alignSelf: 'center'
 									}}
+									onPress={() => { navigation.navigate('ViewRoom', {room}) }}
 									title='Ir'/>
 							</Card.Image>
 						</Card>
